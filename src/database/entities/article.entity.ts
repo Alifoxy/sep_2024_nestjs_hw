@@ -12,6 +12,7 @@ import { LikeEntity } from './like.entity';
 import { BaseModel } from './models/base.model';
 import { TagEntity } from './tag.entity';
 import { UserEntity } from './user.entity';
+import {CommentEntity} from "./comment.entity";
 
 @Entity({ name: TableNameEnum.ARTICLES })
 export class ArticleEntity extends BaseModel {
@@ -35,4 +36,8 @@ export class ArticleEntity extends BaseModel {
 
     @ManyToMany(() => TagEntity, (entity) => entity.articles)
     tags?: TagEntity[];
+
+    @OneToMany(() => CommentEntity, (entity) => entity.article)
+    comments?: CommentEntity[];
+
 }
